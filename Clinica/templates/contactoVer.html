@@ -1,0 +1,80 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+    <style>
+        .google-font-table {
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        table.table.table-info.google-font-table.w-75.mx-auto.text-center {
+            width: 90% !important;
+            margin: 0 auto !important;
+            border-bottom: 1px solid #000000; /* Línea en la parte inferior de las celdas del cuerpo */
+            border-left: 1px solid #6e8294; /* Línea en el borde derecho de las celdas del cuerpo */  
+            text-align: center; /* Centrar el contenido horizontal en la tabla */
+        }
+        table.table.table-info.google-font-table.w-75.mx-auto.text-center td {
+            font-size: 0.9em;
+        }
+        h4.text-center.google-font-table {
+            margin-top: 20px; /* Ajusta el margen superior a tu preferencia */
+            font-size: 1.8em; /* Ajusta el tamaño de la fuente según tu preferencia */
+        }
+        .btn.btn-danger, .btn.btn-warning {
+            padding: 0.6rem 0.8rem;
+            font-size: 1em;
+        }
+        .table-info thead th {
+            background-color: #4e8cf5;; /* Cambiar al color azul que desees */
+            color: rgb(255, 255, 255); /* Texto en color blanco para resaltar */
+        }
+        .table-info tbody tr td {
+            border-bottom: 1px solid #6e8294; /* Línea en la parte inferior de las celdas del cuerpo */
+            border-right: 1px solid #6e8294; /* Línea en el borde derecho de las celdas del cuerpo */
+            text-align: center; /* Centrar el contenido horizontal en las celdas */
+        }
+        .table-info th:nth-last-child(2),
+        .table-info td:nth-last-child(2) {
+            border-right: none; /* Eliminar el borde derecho de la antepenúltima columna */
+        }
+    </style>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-primary google-font-form">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+   <h4 class="text-center google-font-table"><b>Lista de contactos:</b></h4>
+
+    <table class="table table-info w-75 mx-auto text-center google-font-table">
+        <thead>
+        <tr>
+            <th style="font-size: 1.3em;">Nombre</th>
+            <th style="font-size: 1.3em;">Correo electrónico</th>
+            <th style="font-size: 1.3em;">Asunto</th>
+            <th style="font-size: 1.3em;">Mensaje</th>
+            <th colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contacto in contactos %}
+            <tr>
+                <td style="font-size: 1em;">{{ contacto.nombre }}</td>
+                <td style="font-size: 1em;">{{ contacto.correo_electrónico }}</td>
+                <td style="font-size: 1em;">{{ contacto.asunto }}</td>
+                <td style="font-size: 1em;">{{ contacto.mensaje }}</td>
+                <td> 
+                    <form action="{% url 'eliminarcontacto' contacto.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" onclick="return confirm('¿Está seguro de ELIMINAR los datos del CONTACTO seleccionado?')">
+                          Borrar <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </td>
+                <td></td>       
+            </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+{% endblock %}

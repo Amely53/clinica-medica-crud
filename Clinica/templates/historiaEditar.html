@@ -1,0 +1,39 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+    <style>
+        .google-font-form {
+            font-family: 'Chakra Petch', sans-serif;
+        }
+    </style>
+
+    <h3 class="text-center google-font-form">Historial Clínico:</h3>
+
+    <form class="w-50 shadow mx-auto p-4 m-3 google-font-form" method="post" action="{% url 'editarhistoria' %}">
+        {% csrf_token %}
+        
+        <input type="hidden" name="id" value="{{ historia.id }}">
+        
+        Médico tratante: <input type="text" name="médico" class="form-control my-2 google-font-form" required value="{{ historia.médico_tratante }}">
+        
+        Nombre del paciente: <input type="text" name="paciente" class="form-control my-2 google-font-form" required value="{{ historia.nombre_del_paciente }}">
+        
+        Fecha de nacimiento: <input type="text" name="nacimiento" class="form-control my-2 google-font-form" required value="{{ historia.fecha_de_nacimiento }}">
+        
+        Género: <input type="text" name="género" class="form-control my-2 google-font-form" required value="{{ historia.género }}">
+        
+        Dirección: <input type="text" name="dirección" class="form-control my-2 google-font-form" required value="{{ historia.dirección }}">
+        
+        Antecedentes médicos: <input type="text" name="antecedentes" class="form-control my-2 google-font-form" required value="{{ historia.antecedentes_médicos }}">
+        
+        Receta médica: <input type="text" name="receta" class="form-control my-2 google-font-form" required value="{{ historia.receta_médica }}">
+        
+        Síntomas: <input type="text" name="síntomas" class="form-control my-2 google-font-form" required value="{{ historia.síntomas }}">
+        
+        Alergias: <input type="text" name="alergias" class="form-control my-2 google-font-form" required value="{{ historia.alergias }}">
+        
+        Diagnóstico: <input type="text" name="diagnóstico" class="form-control my-2 google-font-form" required value="{{ historia.diagnóstico }}">
+ 
+        <input type="submit" value="Guardar cambios" class="btn btn-warning">
+    </form>
+{% endblock %}

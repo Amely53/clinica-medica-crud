@@ -1,0 +1,93 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+    <style>
+        .google-font-table {
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        table.table.table-info.google-font-table.w-75.mx-auto.text-center {
+            width: 90% !important;
+            margin: 0 auto !important;
+            border-bottom: 1px solid #000000; /* Línea en la parte inferior de las celdas del cuerpo */
+            border-left: 1px solid #6e8294; /* Línea en el borde derecho de las celdas del cuerpo */  
+            text-align: center; /* Centrar el contenido horizontal en la tabla */
+        }
+        table.table.table-info.google-font-table.w-75.mx-auto.text-center td {
+            font-size: 0.9em;
+        }
+        h5.text-center.google-font-table {
+            margin-top: 15px; /* Ajusta el margen superior a tu preferencia */
+            font-size: 1.8em; /* Ajusta el tamaño de la fuente según tu preferencia */
+        }
+        .btn.btn-danger, .btn.btn-warning {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.9em;
+        }
+        .table-info thead th {
+            background-color: #4e8cf5;; /* Cambiar al color azul que desees */
+            color: rgb(255, 255, 255); /* Texto en color blanco para resaltar */
+        }
+        .table-info tbody tr td {
+            border-bottom: 1px solid #6e8294; /* Línea en la parte inferior de las celdas del cuerpo */
+            border-right: 1px solid #6e8294; /* Línea en el borde derecho de las celdas del cuerpo */
+            text-align: center; /* Centrar el contenido horizontal en las celdas */
+        }
+        .table-info th:nth-last-child(2),
+        .table-info td:nth-last-child(2) {
+            border-right: none; /* Eliminar el borde derecho de la antepenúltima columna */
+        }
+    </style>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-primary google-font-form">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <h5 class="text-center google-font-table"><b>Lista de pacientes:</b></h5>
+
+    <table class="table table-info w-75 mx-auto text-center google-font-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>DPI</th>
+                <th>Fecha de nacimiento</th>
+                <th>Dirección</th>
+                <th>Razón de su visita</th>
+                <th>Receta médica</th>
+                <th>Número telefónico</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+                <tr>
+                    <td>{{ paciente.nombre }}</td>
+                    <td>{{ paciente.dpi }}</td>
+                    <td>{{ paciente.fecha_de_nacimiento }}</td>
+                    <td>{{ paciente.dirección }}</td>
+                    <td>{{ paciente.razón_de_su_visita }}</td>
+                    <td>{{ paciente.receta_médica }}</td>
+                    <td>{{ paciente.número_telefónico }}</td>
+                    <td> 
+                        <form action="{% url 'eliminar' paciente.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" onclick="return confirm('¿Está seguro de ELIMINAR los datos del paciente seleccionado?')">
+                                 Borrar <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td> 
+                        <form action="{% url 'detalle' paciente.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-warning">
+                                Editar fila <i class="fa fa-edit"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

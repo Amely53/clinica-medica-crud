@@ -1,0 +1,20 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+<div style="position: relative; height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column; background-image: url('https://estaticos-cdn.elperiodico.com/clip/da934525-c2e8-415b-891e-b3898ae5abd6_alta-libre-aspect-ratio_default_0.jpg'); background-size: cover; padding-top: 50px; position: relative;">
+    <h1 class="text-center text-light" style="z-index: 2; position: relative; -webkit-text-stroke: 2.5px  #4e8cf5;(37, 205, 251, 0.65); text-stroke: 2.5px rgba(77, 124, 165, 0.65); font-size: 6em; font-family: 'Chakra Petch', sans-serif; font-weight: 100; color: white; margin-top: -230px;">Clínica médica<br>"La Eterna Primavera"</h1>
+    <i class="fas fa-house-medical" style="font-size: 5em; position: absolute; top: 350px; color: #4e8cf5;"></i>
+
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 110px; overflow: hidden; z-index: 1;">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 110px; width: 100%;">
+            <path d="M0,100 C125,0 375,150 500,100 L500,0 L0,0 Z" style="stroke: none; fill: rgba(191, 225, 255, 0.65);"></path>
+        </svg>
+    </div>
+    
+    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 320px; overflow: hidden; z-index: 1;">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 320px; width: 100%;">
+            <path d="M0,50 C125,150 375,0 500,50 L500,150 L0,150 Z" style="stroke: none; fill: rgba(191, 225, 255, 0.65);"></path>
+        </svg>
+    </div>    
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+    <style>
+        .google-font-form {
+            font-family: 'Chakra Petch', sans-serif;
+        }
+        .google-font-form strong {
+            font-weight: bold;
+        }
+        .title-margin {
+            margin-top: 15px; /* Espacio superior */
+            font-size: 1.8em; /* Tamaño del título */
+        }
+    </style>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-primary google-font-form">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <h4 class="text-center google-font-form title-margin"><strong>Contacto:</strong></h4>
+
+    <form class="w-50 shadow mx-auto p-4 m-3 google-font-form" method="post" action="contacto/guardar">
+        {% csrf_token %}
+         <strong>Nombre:</strong> <input type="text" name="nombre" class="form-control my-2 google-font-form" required>
+     
+         <strong>Correo electrónico:</strong> <input type="text" name="correo" class="form-control my-2 google-font-form" required>
+         
+         <strong>Asunto:</strong> <input type="text" name="asunto" class="form-control my-2 google-font-form" required>
+ 
+         <strong>Mensaje:</strong> <input type="text" name="mensaje" class="form-control my-2 google-font-form" required>
+ 
+         <input type="submit" value="Enviar" class="btn btn-info google-font-form">
+     </form>
+{% endblock %}

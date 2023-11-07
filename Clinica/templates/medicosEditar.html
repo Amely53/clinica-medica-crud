@@ -1,0 +1,27 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+    <style>
+        .google-font-form {
+            font-family: 'Chakra Petch', sans-serif;
+        }
+    </style>
+
+    <h3 class="text-center google-font-form">Médico Tratante:</h3>
+
+    <form class="w-50 shadow mx-auto p-4 m-3 google-font-form" method="post" action="{% url 'modificar' %}">
+        {% csrf_token %}
+
+        <input type="hidden" name="id" value="{{ medico.id }}">
+
+        Nombre: <input type="text" name="nombre" class="form-control my-2 google-font-form" required value="{{ medico.nombre }}">
+     
+        Número de colegiado: <input type="number" name="número_de_colegiado" class="form-control my-2 google-font-form" required value="{{ medico.número_de_colegiado }}">
+         
+        Especialidad: <input type="text" name="especialidad" class="form-control my-2 google-font-form" required value="{{ medico.especialidad }}">
+ 
+        Diagnóstico: <input type="text" name="diagnóstico" class="form-control my-2 google-font-form" required value="{{ medico.diagnóstico }}">
+ 
+        <input type="submit" value="Guardar cambios" class="btn btn-warning">
+    </form>
+{% endblock %}
